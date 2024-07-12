@@ -1,0 +1,8 @@
+{
+  "screwdriver_buzz": {
+    "subtitle": "sound.fobwatch.screwdriver_buzz",
+    "sounds": [
+      "fobwatch:screwdriver_buzz"
+    ]
+  }
+}

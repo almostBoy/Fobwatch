@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:cyan_stained_glass_pane"
+    },
+    "E": {
+      "item": "minecraft:ender_pearl"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "P": {
+      "item": "minecraft:pink_stained_glass_pane"
+    }
+  },
+  "pattern": [
+    "PGG",
+    "GEG",
+    "GGC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fobwatch:telepathic_engine"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "fobwatch:dematerialization_circuit"
+    },
+    {
+      "item": "fobwatch:fluid_link"
+    },
+    {
+      "item": "fobwatch:chameleon_circuit"
+    },
+    {
+      "item": "fobwatch:telepathic_engine"
+    },
+    {
+      "item": "fobwatch:geometric_manipulator"
+    },
+    {
+      "item": "fobwatch:defensive_circuit"
+    },
+    {
+      "item": "fobwatch:rift_charger"
+    },
+    {
+      "item": "fobwatch:magranomic_sensor"
+    },
+    {
+      "item": "fobwatch:circuit_board"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "fobwatch:tardis_engine"
+  }
+}

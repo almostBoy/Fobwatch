@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:light_blue_stained_glass_pane"
+    },
+    "C": {
+      "item": "minecraft:copper_bulb"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "I I",
+    "BCB",
+    "I I"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fobwatch:rift_charger"
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_chameleon_circuit": {
+      "conditions": {
+        "items": [
+          {
+            "items": "fobwatch:chameleon_circuit"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_circuit_board": {
+      "conditions": {
+        "items": [
+          {
+            "items": "fobwatch:circuit_board"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_defensive_circuit": {
+      "conditions": {
+        "items": [
+          {
+            "items": "fobwatch:defensive_circuit"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_dematerialization_circuit": {
+      "conditions": {
+        "items": [
+          {
+            "items": "fobwatch:dematerialization_circuit"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_fluid_link": {
+      "conditions": {
+        "items": [
+          {
+            "items": "fobwatch:fluid_link"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_geometric_manipulator": {
+      "conditions": {
+        "items": [
+          {
+            "items": "fobwatch:geometric_manipulator"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_magranomic_sensor": {
+      "conditions": {
+        "items": [
+          {
+            "items": "fobwatch:magranomic_sensor"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_rift_charger": {
+      "conditions": {
+        "items": [
+          {
+            "items": "fobwatch:rift_charger"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_telepathic_engine": {
+      "conditions": {
+        "items": [
+          {
+            "items": "fobwatch:telepathic_engine"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:tardis_engine"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_dematerialization_circuit",
+      "has_fluid_link",
+      "has_chameleon_circuit",
+      "has_telepathic_engine",
+      "has_geometric_manipulator",
+      "has_defensive_circuit",
+      "has_rift_charger",
+      "has_magranomic_sensor",
+      "has_circuit_board"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:tardis_engine"
+    ]
+  }
+}

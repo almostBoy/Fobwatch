@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "C": {
+      "item": "fobwatch:circuit_board"
+    },
+    "I": {
+      "item": "minecraft:copper_ingot"
+    },
+    "L": {
+      "item": "fobwatch:chameleon_receiver"
+    },
+    "M": {
+      "item": "minecraft:comparator"
+    }
+  },
+  "pattern": [
+    " A ",
+    "LCM",
+    " I "
+  ],
+  "result": {
+    "count": 1,
+    "id": "fobwatch:chameleon_remote"
+  }
+}
