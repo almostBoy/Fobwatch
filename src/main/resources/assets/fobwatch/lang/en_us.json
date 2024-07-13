@@ -1,0 +1,41 @@
+{
+  "item.fobwatch.dematerialization_circuit": "Dematerialization Circuit",
+  "item.fobwatch.fluid_link": "Fluid Link",
+  "item.fobwatch.chameleon_circuit": "Chameleon Circuit",
+  "item.fobwatch.telepathic_engine": "Telepathic Engine",
+  "item.fobwatch.geometric_manipulator": "Geometric Manipulator",
+  "item.fobwatch.defensive_circuit": "Defensive Circuit",
+  "item.fobwatch.rift_charger": "Rift Charger",
+  "item.fobwatch.magranomic_sensor": "Magranomic Sensor",
+  "item.fobwatch.plasmic_shell": "Plasmic Shell",
+  "item.fobwatch.tardis_heart": "The Heart of the TARDIS",
+  "item.fobwatch.ars_egg": "A.R.S. Egg",
+  "item.fobwatch.eye_of_harmony": "Eye of Harmony",
+  "item.fobwatch.circuit_board": "Circuit Board",
+  "item.fobwatch.chameleon_receiver": "Chameleon Receiver",
+
+  "item.fobwatch.tardis_spawner": "TARDIS",
+
+  "item.fobwatch.screwdriver_mark_one": "Sonic Screwdriver",
+  "item.fobwatch.screwdriver_mark_two": "Sonic Screwdriver",
+  "item.fobwatch.screwdriver_mark_three": "Sonic Screwdriver",
+  "item.fobwatch.screwdriver_mark_four": "Sonic Screwdriver",
+  "item.fobwatch.screwdriver_mark_five": "Sonic Screwdriver",
+  "item.fobwatch.screwdriver_mark_six": "Sonic Screwdriver",
+  "item.fobwatch.screwdriver_mark_seven": "Sonic Screwdriver",
+  "item.fobwatch.screwdriver_mark_eight": "Sonic Screwdriver",
+  "item.fobwatch.screwdriver_mark_nine": "Sonic Screwdriver",
+  "item.fobwatch.war_screwdriver": "Sonic Screwdriver",
+  "item.fobwatch.dark_eyes_screwdriver": "Sonic Screwdriver",
+
+  "item.fobwatch.directional_remote": "Directional Remote",
+  "item.fobwatch.chameleon_remote": "Chameleon Remote",
+  "item.fobwatch.stattenheim_remote": "Stattenheim Remote",
+
+  "sound.fobwatch.screwdriver_buzz": "Sonic Screwdriver Buzzes",
+  "sound.fobwatch.cloister_bell": "Cloister Bell Tolls",
+  "sound.fobwatch.tardis_landing": "TARDIS Materializes",
+  "sound.fobwatch.tardis_takeoff": "TARDIS Dematerializes",
+
+  "itemGroup.fobwatch.fobwatch_equipment_group_key": "TARDIS"
+}

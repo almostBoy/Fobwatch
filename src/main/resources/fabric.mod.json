@@ -34,9 +34,10 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.15.11",
-		"minecraft": "~1.21",
+		"minecraft": "~1.20.4",
 		"java": ">=21",
-		"fabric-api": "*"
+		"fabric-api": "*",
+		"dimlib": "1.0.2+1.20.4"
 	},
 	"suggests": {
 		"another-mod": "*"

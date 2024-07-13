@@ -95,7 +95,7 @@ public class Sonic_Screwdriver extends Item {
         int zVal = blockPos.getZ();
         assert user != null;
         //Play screwdriver buzz
-        user.playSound(FobwatchSounds.SCREWDRIVER_BUZZ);
+        user.playSound(FobwatchSounds.SCREWDRIVER_BUZZ, 3, 1);
         //Get the type of screwdriver the player is holding
         Item screwdriverForCooldown = user.getMainHandStack().getItem();
         //Check if the screwdriver is on cooldown
@@ -106,22 +106,22 @@ public class Sonic_Screwdriver extends Item {
                 if (block == Blocks.IRON_DOOR) {
                     boolean isOpen = state.get(DoorBlock.OPEN);
                     world.setBlockState(blockPos, state.with(DoorBlock.OPEN, !isOpen));
-                    user.playSound(SoundEvents.BLOCK_IRON_DOOR_OPEN);
+                    user.playSound(SoundEvents.BLOCK_IRON_DOOR_OPEN, 1, 1);
                     return ActionResult.success(true);
                 } else if (block == Blocks.IRON_TRAPDOOR) {
                     boolean isOpen = state.get(TrapdoorBlock.OPEN);
                     world.setBlockState(blockPos, state.with(TrapdoorBlock.OPEN, !isOpen));
-                    user.playSound(SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN);
+                    user.playSound(SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN, 1, 1);
                     return ActionResult.success(true);
                 } else if (state.getBlock() == Blocks.REDSTONE_LAMP) {
                     boolean isLit = state.get(RedstoneLampBlock.LIT);
                     world.setBlockState(blockPos, state.with(RedstoneLampBlock.LIT, !isLit));
-                    user.playSound(SoundEvents.BLOCK_COMPARATOR_CLICK);
+                    user.playSound(SoundEvents.BLOCK_COMPARATOR_CLICK, 1, 1);
                     return ActionResult.success(true);
                 } else if (Arrays.stream(copperBulbs).anyMatch(match -> match == state.getBlock())) {
                     boolean isLit = state.get(BulbBlock.LIT);
                     world.setBlockState(blockPos, state.with(BulbBlock.LIT, !isLit));
-                    user.playSound(SoundEvents.BLOCK_COMPARATOR_CLICK);
+                    user.playSound(SoundEvents.BLOCK_COMPARATOR_CLICK, 1, 1);
                     return ActionResult.success(true);
                 } else if (state.getBlock() == Blocks.CAMPFIRE) {
                     boolean isLit = state.get(CampfireBlock.LIT);
@@ -146,7 +146,7 @@ public class Sonic_Screwdriver extends Item {
                     tnt.updatePosition(xVal+0.5, yVal, zVal+0.5);
                     tnt.setFuse(80);
                     world.spawnEntity(tnt);
-                    user.playSound(SoundEvents.ENTITY_TNT_PRIMED);
+                    user.playSound(SoundEvents.ENTITY_TNT_PRIMED, 1, 1);
                     return ActionResult.success(true);
                 }
             } else {
@@ -171,7 +171,7 @@ public class Sonic_Screwdriver extends Item {
         //Get what kind of screwdriver the player is holding
         Item screwdriverForCooldown = user.getMainHandStack().getItem();
         //Play screwdriver buzz
-        user.playSound(FobwatchSounds.SCREWDRIVER_BUZZ);
+        user.playSound(FobwatchSounds.SCREWDRIVER_BUZZ, 1, 1);
         //Check if the screwdriver is on cooldown
 if(!user.getItemCooldownManager().isCoolingDown(screwdriverForCooldown)) {
     //Check if a creeper was right-clicked, and explode if so, and initiate cooldown
