@@ -18,6 +18,7 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
@@ -75,17 +76,18 @@ public class tardisBlock extends Block{
 
     public static final IntProperty EXTERIORSTATE = IntProperty.of("exteriorstate",1,amountOfExteriors*4);
     public static final IntProperty FLIGHTSTATE = IntProperty.of("flightstate", 1, 3);
+    public static final BooleanProperty OPEN = BooleanProperty.of("open");
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(EXTERIORSTATE,FLIGHTSTATE,Properties.OPEN,Properties.FACING);
+        builder.add(EXTERIORSTATE,FLIGHTSTATE,OPEN,Properties.FACING);
     }
 
     public tardisBlock(Settings settings) {
         super(settings);
         setDefaultState(getDefaultState().with(EXTERIORSTATE,1));
         setDefaultState(getDefaultState().with(FLIGHTSTATE,1));
-        setDefaultState(getDefaultState().with(Properties.OPEN,false));
+        setDefaultState(getDefaultState().with(OPEN,false));
         setDefaultState(getDefaultState().with(Properties.FACING, Direction.NORTH));
     }
 
@@ -101,41 +103,42 @@ public class tardisBlock extends Block{
     @Override
     public ActionResult onUse
             (BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        int exteriorState = state.get(EXTERIORSTATE);
-        boolean openQuery = state.get(Properties.OPEN);
+        int tardisState = state.get(EXTERIORSTATE);
+        boolean doorState = state.get(OPEN);
 
-        if (state.get(FLIGHTSTATE) == 1) {
-            if(openQuery){
-                world.setBlockState(pos, state.with(Properties.OPEN, false));
-                world.playSound(player, pos, SoundEvents.BLOCK_WOODEN_DOOR_CLOSE, SoundCategory.BLOCKS);
-            }else {
-                if (player.getMainHandStack().getItem() == Components.DIRECTIONAL_REMOTE) {
-                    if (!player.getItemCooldownManager().isCoolingDown(Components.DIRECTIONAL_REMOTE)) {
-                        if (Arrays.stream(directionValues[3]).anyMatch(match -> match == exteriorState)) {
-                            world.setBlockState(pos, state.with(EXTERIORSTATE, exteriorState - 3));
-                        } else {
-                            world.setBlockState(pos, state.with(EXTERIORSTATE, exteriorState + 1));
-                        }
-                        world.playSound(player, pos, SoundEvents.BLOCK_CHAIN_BREAK, SoundCategory.BLOCKS);
-                        player.getItemCooldownManager().set(Components.DIRECTIONAL_REMOTE, 20);
-                    }
-                } else if (player.getMainHandStack().getItem() == Components.CHAMELEON_REMOTE) {
-                    if (!player.getItemCooldownManager().isCoolingDown(Components.CHAMELEON_REMOTE)) {
-                        if (Arrays.stream(exteriorValues[finalBlockstate]).anyMatch(match -> match == exteriorState)) {
-                            world.setBlockState(pos, state.with(EXTERIORSTATE, exteriorState - ((finalBlockstate) * 4)));
-                        } else {
-                            world.setBlockState(pos, state.with(EXTERIORSTATE, exteriorState + 4));
-                        }
-                        world.playSound(player, pos, FobwatchSounds.CLOISTER_BELL, SoundCategory.BLOCKS);
-                        player.getItemCooldownManager().set(Components.CHAMELEON_REMOTE, 20);
-                    }
+        if(player.getMainHandStack().getItem() == Components.DIRECTIONAL_REMOTE){
+            if(!player.getItemCooldownManager().isCoolingDown(Components.DIRECTIONAL_REMOTE)){
+                if(Arrays.stream(directionValues[3]).anyMatch(match -> match == tardisState)){
+                    world.setBlockState(pos, state.with(EXTERIORSTATE, tardisState-3));
                 }else{
-                    world.setBlockState(pos, state.with(Properties.OPEN, true));
-                    world.playSound(player, pos, SoundEvents.BLOCK_WOODEN_DOOR_OPEN, SoundCategory.BLOCKS);
+                    world.setBlockState(pos, state.with(EXTERIORSTATE, tardisState+1));
                 }
+                world.playSound(player, pos, SoundEvents.BLOCK_CHAIN_BREAK, SoundCategory.BLOCKS);
+                player.getItemCooldownManager().set(Components.DIRECTIONAL_REMOTE, 20);
+                return ActionResult.SUCCESS;
+            } else {return ActionResult.FAIL;}
+        }
+        else if (player.getMainHandStack().getItem() == Components.CHAMELEON_REMOTE){
+            if(!player.getItemCooldownManager().isCoolingDown(Components.CHAMELEON_REMOTE)){
+                if(Arrays.stream(exteriorValues[finalBlockstate]).anyMatch(match -> match == tardisState)){
+                    world.setBlockState(pos, state.with(EXTERIORSTATE, tardisState-((finalBlockstate)*4)));
+                }else{
+                    world.setBlockState(pos, state.with(EXTERIORSTATE, tardisState+4));
+                }
+                world.playSound(player, pos, FobwatchSounds.CLOISTER_BELL, SoundCategory.BLOCKS);
+                player.getItemCooldownManager().set(Components.CHAMELEON_REMOTE, 20);
+                return ActionResult.SUCCESS;
+            } else{return ActionResult.FAIL;}
+        }
+        else{
+            world.setBlockState(pos, state.with(OPEN, !doorState));
+            if (doorState){
+                world.playSound(player, pos, SoundEvents.BLOCK_WOODEN_DOOR_CLOSE, SoundCategory.BLOCKS);
+            }else{
+                world.playSound(player, pos, SoundEvents.BLOCK_WOODEN_DOOR_OPEN, SoundCategory.BLOCKS);
             }
-
-        }return ActionResult.PASS;
+            return ActionResult.SUCCESS;
+        }
     }
 
     @Override
