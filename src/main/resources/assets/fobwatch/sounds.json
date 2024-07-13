@@ -4,5 +4,23 @@
     "sounds": [
       "fobwatch:screwdriver_buzz"
     ]
+  },
+  "cloister_bell": {
+    "subtitle": "sound.fobwatch.cloister_bell",
+    "sounds": [
+      "fobwatch:cloister_bell"
+    ]
+  },
+  "tardis_landing": {
+    "subtitle": "sound.fobwatch.tardis_landing",
+    "sounds": [
+      "fobwatch:tardis_landing"
+    ]
+  },
+  "tardis_takeoff": {
+    "subtitle": "sound.fobwatch.tardis_takeoff",
+    "sounds": [
+      "fobwatch:tardis_takeoff"
+    ]
   }
 }

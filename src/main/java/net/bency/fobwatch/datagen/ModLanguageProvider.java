@@ -1,10 +1,9 @@
 package net.bency.fobwatch.datagen;
 
-import net.bency.fobwatch.FobwatchSounds;
 import net.bency.fobwatch.sonic_screwdrivers.Sonic_Screwdriver;
 import net.bency.fobwatch.tardis_classes.Components;
-import net.bency.fobwatch.tardis_classes.TARDIS;
-import net.bency.fobwatch.tardis_classes.TARDIS_Spawner;
+import net.bency.fobwatch.tardis_classes.tardisBlock;
+import net.bency.fobwatch.tardis_classes.TardisSpawningItem;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.registry.RegistryWrapper;
@@ -35,11 +34,11 @@ public class ModLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add(Components.CIRCUIT_BOARD, "Circuit Board");
         translationBuilder.add(Components.CHAMELEON_RECEIVER, "Chameleon Receiver");
 
-        translationBuilder.add(TARDIS_Spawner.TARDIS_SPAWNER, "TARDIS");
+        translationBuilder.add(TardisSpawningItem.TARDIS_SPAWNER, "TARDIS");
 
         translationBuilder.add(Components.FOBWATCH_EQUIPMENT_GROUP_KEY, "Fobwatch: Equipment");
 
-        translationBuilder.add(TARDIS.TARDIS, "TARDIS");
+        translationBuilder.add(tardisBlock.TARDIS, "TARDIS");
 
         translationBuilder.add(Sonic_Screwdriver.SCREWDRIVER_MARK_ONE, "Sonic Screwdriver");
         translationBuilder.add(Sonic_Screwdriver.SCREWDRIVER_MARK_TWO, "Sonic Screwdriver");
@@ -57,6 +56,9 @@ public class ModLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add(Components.CHAMELEON_REMOTE, "Chameleon Remote");
         translationBuilder.add(Components.STATTENHEIM_REMOTE, "Stattenheim Remote");
 
-        translationBuilder.add("sound.fobwatch.screwdriver_buzz", "Sonic Screwdriver buzzes");
+        translationBuilder.add("sound.fobwatch.screwdriver_buzz", "Sonic Screwdriver Buzzes");
+        translationBuilder.add("sound.fobwatch.cloister_bell", "Cloister Bell Rings");
+        translationBuilder.add("sound.fobwatch.tardis_landing", "TARDIS Materializes");
+        translationBuilder.add("sound.fobwatch.tardis_takeoff", "TARDIS Dematerializes");
     }
 }

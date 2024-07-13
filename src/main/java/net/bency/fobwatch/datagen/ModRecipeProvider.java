@@ -3,7 +3,7 @@ package net.bency.fobwatch.datagen;
 import net.bency.fobwatch.FobwatchTags;
 import net.bency.fobwatch.sonic_screwdrivers.Sonic_Screwdriver;
 import net.bency.fobwatch.tardis_classes.Components;
-import net.bency.fobwatch.tardis_classes.TARDIS_Spawner;
+import net.bency.fobwatch.tardis_classes.TardisSpawningItem;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.server.recipe.RecipeExporter;
@@ -212,7 +212,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                     .criterion(hasItem(Components.CIRCUIT_BOARD), conditionsFromItem(Components.CIRCUIT_BOARD))
                     .offerTo(exporter, Identifier.of(getRecipeName(Components.TARDIS_ENGINE)));
 
-            ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, TARDIS_Spawner.TARDIS_SPAWNER,1)
+            ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, TardisSpawningItem.TARDIS_SPAWNER,1)
                     .input(Components.TARDIS_ENGINE)
                     .input(Components.TARDIS_HEART)
                     .input(Components.EYE_OF_HARMONY)
@@ -223,7 +223,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                     .criterion(hasItem(Components.EYE_OF_HARMONY), conditionsFromItem(Components.EYE_OF_HARMONY))
                     .criterion(hasItem(Components.ARS_EGG), conditionsFromItem(Components.ARS_EGG))
                     .criterion(hasItem(Components.PLASMIC_SHELL), conditionsFromItem(Components.PLASMIC_SHELL))
-                    .offerTo(exporter, Identifier.of(getRecipeName(TARDIS_Spawner.TARDIS_SPAWNER)));
+                    .offerTo(exporter, Identifier.of(getRecipeName(TardisSpawningItem.TARDIS_SPAWNER)));
 
             ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Sonic_Screwdriver.SCREWDRIVER_MARK_ONE, 1)
                     .pattern(" A ")

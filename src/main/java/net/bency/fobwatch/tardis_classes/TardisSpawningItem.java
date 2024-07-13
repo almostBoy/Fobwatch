@@ -1,18 +1,18 @@
 package net.bency.fobwatch.tardis_classes;
 
 import net.bency.fobwatch.Fobwatch;
+import net.bency.fobwatch.FobwatchSounds;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 
-public class TARDIS_Spawner extends Item {
-    public TARDIS_Spawner(Settings settings) {
+public class TardisSpawningItem extends Item {
+    public TardisSpawningItem(Settings settings) {
         super(settings);
     }
 
@@ -23,7 +23,7 @@ public class TARDIS_Spawner extends Item {
     }
 
     public static final Item TARDIS_SPAWNER = register
-            (new TARDIS_Spawner(new Item.Settings().maxCount(1).rarity(Rarity.EPIC)), "tardis_spawner");
+            (new TardisSpawningItem(new Item.Settings().maxCount(1).rarity(Rarity.EPIC)), "tardis_spawner");
 
 
     public static void spawnTARDIS(){
@@ -31,8 +31,8 @@ public class TARDIS_Spawner extends Item {
         UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
             BlockPos blockPos = ((BlockHitResult)hitResult).getBlockPos();
             if(player.getMainHandStack().getItem() == TARDIS_SPAWNER){
-                world.setBlockState(blockPos.up(2), TARDIS.TARDIS.getDefaultState());
-                world.playSound(player, blockPos, SoundEvents.BLOCK_BEACON_POWER_SELECT, SoundCategory.BLOCKS);
+                world.setBlockState(blockPos.up(2), tardisBlock.TARDIS.getDefaultState());
+                world.playSound(player, blockPos, FobwatchSounds.CLOISTER_BELL, SoundCategory.BLOCKS);
                 player.getMainHandStack().decrement(1);
                 return ActionResult.SUCCESS;
             }

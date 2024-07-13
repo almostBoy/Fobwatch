@@ -66,7 +66,7 @@ public class Components {
 
     public static final RegistryKey<ItemGroup> FOBWATCH_EQUIPMENT_GROUP_KEY = RegistryKey.of(Registries.ITEM_GROUP.getKey(), Identifier.of(Fobwatch.MOD_ID, "tardis_item_group"));
     public static final ItemGroup FOBWATCH_EQUIPMENT_GROUP = FabricItemGroup.builder()
-            .icon(() -> new ItemStack(TARDIS_Spawner.TARDIS_SPAWNER))
+            .icon(() -> new ItemStack(TardisSpawningItem.TARDIS_SPAWNER))
             .displayName(Text.translatable("itemGroup.fobwatch_equipment"))
             .build();
 
@@ -91,7 +91,7 @@ public class Components {
             itemGroup.add(CHAMELEON_REMOTE);
             itemGroup.add(STATTENHEIM_REMOTE);
             itemGroup.add(CHAMELEON_RECEIVER);
-            itemGroup.add(TARDIS_Spawner.TARDIS_SPAWNER);
+            itemGroup.add(TardisSpawningItem.TARDIS_SPAWNER);
             itemGroup.add(Sonic_Screwdriver.SCREWDRIVER_MARK_ONE);
         });
     }

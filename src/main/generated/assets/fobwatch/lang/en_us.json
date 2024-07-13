@@ -31,5 +31,8 @@
   "item.fobwatch.telepathic_engine": "Telepathic Engine",
   "item.fobwatch.war_screwdriver": "Sonic Screwdriver",
   "itemGroup.fobwatch_equipment": "Fobwatch: Equipment",
-  "sound.fobwatch.screwdriver_buzz": "Sonic Screwdriver buzzes"
+  "sound.fobwatch.cloister_bell": "Cloister Bell Rings",
+  "sound.fobwatch.screwdriver_buzz": "Sonic Screwdriver Buzzes",
+  "sound.fobwatch.tardis_landing": "TARDIS Materializes",
+  "sound.fobwatch.tardis_takeoff": "TARDIS Dematerializes"
 }

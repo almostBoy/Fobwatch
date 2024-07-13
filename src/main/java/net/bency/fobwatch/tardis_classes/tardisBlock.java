@@ -1,6 +1,7 @@
 package net.bency.fobwatch.tardis_classes;
 
 import net.bency.fobwatch.Fobwatch;
+import net.bency.fobwatch.FobwatchSounds;
 import net.minecraft.block.*;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.player.PlayerEntity;
@@ -28,27 +29,28 @@ import java.util.Arrays;
 import java.util.stream.Stream;
 
 
-public class TARDIS extends Block{
+public class tardisBlock extends Block{
 
-    public TARDIS(Settings settings) {
+    public tardisBlock(Settings settings) {
         super(settings);
 
         setDefaultState(getDefaultState().with(STATE, 1));
+        setDefaultState(getDefaultState().with(FLIGHTSTATE, 1));
         setDefaultState(getDefaultState().with(OPEN, false));
         setDefaultState(getDefaultState().with(Properties.FACING, Direction.NORTH));
     }
     // Streams/variables for all the values I need to easily add more exteriors to this specific class.
     // Conventions are in the extended comments below each stream/variable.
-    int amountOfExteriors = 4;
-    int[][] directionValues = {{1, 5, 9, 13},{2, 6, 10, 14},{3, 7, 11, 15},{4, 8, 12, 16}};
+    public static int amountOfExteriors = 7;
+    public static int[][] directionValues = {{1, 5, 9, 13, 17, 21, 25},{2, 6, 10, 14, 18, 22, 26},{3, 7, 11, 15, 19, 23, 27},{4, 8, 12, 16, 20, 24, 28}};
     /*
     [0] = North Facing
     [1] = East Facing
     [2] = South Facing
     [3] = West Facing
      */
-    int[][] exteriorValues = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}};
-    int finalBlockstate = 3;
+    public static int[][] exteriorValues = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}, {17, 18, 19, 20},{21, 22, 23, 24},{25, 26, 27, 28}};
+    public static int finalBlockstate = amountOfExteriors-1;
     /*
     [0] = Factory
     [1] = Nine
@@ -56,7 +58,7 @@ public class TARDIS extends Block{
     [3] = Thirteen
     Highest [n] should be defined in finalBlockstate
      */
-    int[][] portalshapeValues = {{1, 2, 3, 4}, {5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16}};
+    public static int[][] portalshapeValues = {{1, 2, 3, 4}, {5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28}};
     /*
     [0] = Factory
     [1] = Policebox
@@ -73,22 +75,27 @@ public class TARDIS extends Block{
     }
 
     //The custom blockstates the TARDIS has
-    public static final IntProperty STATE = IntProperty.of("state",1,16);
+    public static final IntProperty STATE = IntProperty.of("state",1, amountOfExteriors*4);
+    public static final IntProperty FLIGHTSTATE = IntProperty.of("flightstate",1,3);
     public static final BooleanProperty OPEN = BooleanProperty.of("open");
 
     //The Declaration of all the blockstates the TARDIS has
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(STATE, OPEN, Properties.FACING);
+        builder.add(STATE, FLIGHTSTATE, OPEN, Properties.FACING);
     }
 
-    public static final Block TARDIS = register(new TARDIS(AbstractBlock.Settings.create().
+    public static BlockState state;
+
+    public static final Block TARDIS = register(new tardisBlock(AbstractBlock.Settings.create().
                     strength(999999999, 999999999).
                     sounds(BlockSoundGroup.WOOD).
                     pistonBehavior(PistonBehavior.IGNORE).
-                    noBlockBreakParticles()),
+                    noBlockBreakParticles().
+                    nonOpaque()),
             "tardis",
             false);
+
 
 
     @Override // Allows the player to interact with the TARDIS through right clicks.
@@ -98,7 +105,7 @@ public class TARDIS extends Block{
 
         int tardisState = state.get(STATE);
         boolean doorState = state.get(OPEN);
-        // If the player is holding a compass, the TARDIS will rotate.
+        // If holding directional remote, tardis rotates
         if(player.getMainHandStack().getItem() == Components.DIRECTIONAL_REMOTE){
             if(!player.getItemCooldownManager().isCoolingDown(Components.DIRECTIONAL_REMOTE)){
                 if(Arrays.stream(directionValues[3]).anyMatch(match -> match == tardisState)){
@@ -106,22 +113,22 @@ public class TARDIS extends Block{
                 }else{
                     world.setBlockState(pos, state.with(STATE, tardisState+1));
                 }
-                world.playSound(player, pos, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS);
-                player.getItemCooldownManager().set(Components.DIRECTIONAL_REMOTE, 100);
+                world.playSound(player, pos, SoundEvents.BLOCK_CHAIN_BREAK, SoundCategory.BLOCKS);
+                player.getItemCooldownManager().set(Components.DIRECTIONAL_REMOTE, 20);
                 return ActionResult.SUCCESS;
             } else {return ActionResult.FAIL;}
             }
 
-        //If holding a breeze rod (placeholder item, going to implement a different one), exterior will cycle.
+        //If holding chameleon remote, tardis changes appearance
         else if (player.getMainHandStack().getItem() == Components.CHAMELEON_REMOTE){
             if(!player.getItemCooldownManager().isCoolingDown(Components.CHAMELEON_REMOTE)){
                 if(Arrays.stream(exteriorValues[finalBlockstate]).anyMatch(match -> match == tardisState)){
-                    world.setBlockState(pos, state.with(STATE, tardisState-((amountOfExteriors-1)*4)));
+                    world.setBlockState(pos, state.with(STATE, tardisState-((finalBlockstate)*4)));
                 }else{
                     world.setBlockState(pos, state.with(STATE, tardisState+4));
                 }
-                world.playSound(player, pos, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.BLOCKS);
-                player.getItemCooldownManager().set(Components.CHAMELEON_REMOTE, 100);
+                world.playSound(player, pos, FobwatchSounds.CLOISTER_BELL, SoundCategory.BLOCKS);
+                player.getItemCooldownManager().set(Components.CHAMELEON_REMOTE, 20);
                 return ActionResult.SUCCESS;
             } else{return ActionResult.FAIL;}
             }
@@ -136,9 +143,15 @@ public class TARDIS extends Block{
             }
             return ActionResult.SUCCESS;}
     }
+
     @Override // Defines the shape of the outline the TARDIS shows when hovered over.
     protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return Block.createCuboidShape(-1, -16, -1, 17, 23, 17);
+        int flightState = state.get(FLIGHTSTATE);
+        if(flightState==1) {
+            return Block.createCuboidShape(-1, -16, -1, 17, 23, 17);
+        }else {
+            return VoxelShapes.empty();
+        }
     }
     @Override // The shape with which the player physically interacts
     protected VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
@@ -242,10 +255,16 @@ public class TARDIS extends Block{
     }
     @Override // Defines the points at which the player is looking at the TARDIS
     protected VoxelShape getRaycastShape(BlockState state, BlockView world, BlockPos pos) {
-        return Block.createCuboidShape(-1, -16, -1, 17, 23, 17);
+        int flightState = state.get(FLIGHTSTATE);
+        if(flightState==1) {
+            return Block.createCuboidShape(-1, -16, -1, 17, 23, 17);
+        }else {
+            return VoxelShapes.empty();
+        }
     }
 
-    public static void init() { Components.init(); TARDIS_Spawner.spawnTARDIS(); }
-
-
+    public static void init() { Components.init(); TardisSpawningItem.spawnTARDIS(); }
 }
+
+
+

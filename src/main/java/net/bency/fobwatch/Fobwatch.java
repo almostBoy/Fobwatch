@@ -16,9 +16,9 @@ public class Fobwatch implements ModInitializer {
 		LOGGER.info("Sounds");
 		FobwatchSounds.init();
 		LOGGER.info("TARDIS");
-		TARDIS.init();
+		tardisBlock.init();
 		LOGGER.info("Sonic Screwdriver");
-		Sonic_Screwdriver.raycastingTask();
+		Sonic_Screwdriver.init();
 		LOGGER.info("Debug Tools");
 		LOGGER.info("Fobwatch initialized");
 	}
